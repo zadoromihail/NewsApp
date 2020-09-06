@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewsViewController" customModule="NewsApp" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="fYU-is-IAi" id="cdf-y5-Dx3"/>
+                <outlet property="tableView" destination="bgn-rv-hFX" id="6df-Gl-cbS"/>
+                <outlet property="view" destination="iN0-l3-epB" id="FwY-U7-Juf"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bgn-rv-hFX">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="fYU-is-IAi">
+                    <rect key="frame" x="197" y="443" width="20" height="20"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="bgn-rv-hFX" secondAttribute="bottom" id="0Zd-qc-8VC"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bgn-rv-hFX" secondAttribute="trailing" id="7G7-JD-Emi"/>
+                <constraint firstItem="bgn-rv-hFX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Nrg-wZ-KUy"/>
+                <constraint firstItem="fYU-is-IAi" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="Nwe-hL-r5m"/>
+                <constraint firstItem="bgn-rv-hFX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="z3g-Yg-dMa"/>
+                <constraint firstItem="fYU-is-IAi" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="z6L-Vg-FVw"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="124.6376811594203" y="115.84821428571428"/>
+        </view>
+    </objects>
+</document>

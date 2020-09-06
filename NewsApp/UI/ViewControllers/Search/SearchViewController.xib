@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="NewsApp" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="Wuu-HZ-dbm" id="tOG-kZ-OfR"/>
+                <outlet property="searchBar" destination="7wa-LK-9n7" id="fmi-6I-AsR"/>
+                <outlet property="tableView" destination="yyP-LW-iFa" id="14B-vr-SV7"/>
+                <outlet property="view" destination="iN0-l3-epB" id="ZPt-aO-B7V"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yyP-LW-iFa">
+                    <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Wuu-HZ-dbm">
+                    <rect key="frame" x="197" y="443" width="20" height="20"/>
+                </activityIndicatorView>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="7wa-LK-9n7">
+                    <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="2MM-9t-GPo"/>
+                    </constraints>
+                    <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="Wuu-HZ-dbm" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="1Gq-cp-h2e"/>
+                <constraint firstItem="yyP-LW-iFa" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="B9G-Zw-T96"/>
+                <constraint firstItem="yyP-LW-iFa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="M1h-Zo-iew"/>
+                <constraint firstItem="7wa-LK-9n7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="TSZ-3b-ReL"/>
+                <constraint firstItem="Wuu-HZ-dbm" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="eVT-Re-LCn"/>
+                <constraint firstItem="7wa-LK-9n7" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="hmj-cn-CKn"/>
+                <constraint firstItem="yyP-LW-iFa" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="luL-Lh-rZT"/>
+                <constraint firstItem="7wa-LK-9n7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="n96-AR-RCs"/>
+                <constraint firstItem="yyP-LW-iFa" firstAttribute="top" secondItem="7wa-LK-9n7" secondAttribute="bottom" id="ywX-C2-fdP"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="7e8-ZN-lWs" appends="YES" id="jtI-dh-b5U"/>
+            </connections>
+            <point key="canvasLocation" x="124.6376811594203" y="115.84821428571428"/>
+        </view>
+        <tapGestureRecognizer id="7e8-ZN-lWs">
+            <connections>
+                <action selector="tapGesture:" destination="-1" id="hxD-61-Vc5"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>
