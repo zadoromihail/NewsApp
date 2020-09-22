@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-
 class NewsTabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        delegate = self
         reloadTabs()
     }
     
@@ -44,5 +44,40 @@ class NewsTabBarViewController: UITabBarController {
         nc.tabBarItem = UITabBarItem(title: "Search", image: UIImage(named: "search"), tag: 2)
         return nc
 
+    }
+}
+
+extension NewsTabBarViewController: UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        
+        guard let fromView = selectedViewController?.view,
+              let toView = viewController.view else {
+            return false
+        }
+        if fromView != toView {
+            UIView.transition(
+                from: fromView,
+                to: toView,
+                duration: 0.3,
+                options: [.transitionCrossDissolve],
+                completion: nil
+            )
+        }
+        return true
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        guard let barItemView = item.value(forKey: "view") as? UIView else { return }
+        
+        let timeInterval: TimeInterval = 0.3
+        let propertyAnimator = UIViewPropertyAnimator(
+            duration: timeInterval,
+            dampingRatio: 1
+        ) {
+            barItemView.transform = CGAffineTransform.identity.scaledBy(x: 1.3, y: 1.3)
+        }
+        propertyAnimator.addAnimations({ barItemView.transform = .identity }, delayFactor: CGFloat(timeInterval))
+        propertyAnimator.startAnimation()
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol FavouriteNewsViewModelProtocol{
     var numberOfRowsInSection: Int { get }
@@ -15,7 +16,6 @@ protocol FavouriteNewsViewModelProtocol{
 }
 
 class FavouriteNewsViewModel: FavouriteNewsViewModelProtocol {
-    
     private var getArticlesFromStorage: [Article] {
         let storage = Storage()
         let articles: [Article] = storage.cachedPlainObject()

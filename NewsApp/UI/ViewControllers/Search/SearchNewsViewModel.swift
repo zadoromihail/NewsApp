@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum StorageStrategy {
     case delete
@@ -29,6 +30,7 @@ protocol SearchViewModelProtocol {
     func modifyStorage(article: Article, strategy: StorageStrategy)
     func checkArticleInStorage(article:Article) -> Bool
     func searchNews( text: String, completion: @escaping (Bool, Int?) -> ())
+    func currentArticle(indexPath: IndexPath) -> Article
 }
 
 class SearchViewModel: SearchViewModelProtocol {
@@ -60,7 +62,6 @@ class SearchViewModel: SearchViewModelProtocol {
         guard !news.isEmpty else {
             return 0
         }
-        
         return news.count
     }
     
@@ -84,5 +85,13 @@ class SearchViewModel: SearchViewModelProtocol {
         let articles: [Article] = storage.cachedPlainObject()
         let favourite = articles.first(where: { $0.title == article.title })
         return favourite != nil ? true : false
+    }
+    
+    func currentArticle(indexPath: IndexPath) -> Article {
+        let article = articleFor(index: indexPath.row)
+        guard let safeArticle = article  else {
+            return Article(source: nil, author: nil, title: nil, description: nil, url: nil, urlToImage: nil, publishedAt: nil, content: nil)
+        }
+        return safeArticle
     }
 }

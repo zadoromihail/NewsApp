@@ -25,23 +25,15 @@ class NewsCell: UITableViewCell {
     }
     
     private func setupUI() {
-        titleLabel.font = UIFont.italicSystemFont(ofSize: 20)
         titleLabel.numberOfLines = 0
         titleLabel.textColor = .black
-        
-        descriptionLabel.font = UIFont.italicSystemFont(ofSize: 18)
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = .black
-        
-        dateLabel.font = UIFont.italicSystemFont(ofSize: 15)
         dateLabel.textColor = .black
-        
-        newsImageView.contentMode = .scaleAspectFill
-        newsImageView.backgroundColor = .lightGray
-        
+        newsImageView.contentMode = .scaleAspectFit
+        newsImageView.backgroundColor = .clear
         favouriteButton.titleLabel?.textColor = .white
         favouriteButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        
         backgroundColor = .white
     }
     
@@ -59,12 +51,10 @@ class NewsCell: UITableViewCell {
         if let published = article.publishedAt?.dropLast(10) {
             dateLabel.text = "Published \( published)"
         }
-        
         guard let urlString = article.urlToImage,let url = URL(string: urlString) else {
             newsImageView.isHidden = true
             return
         }
-        
         newsImageView.kf.setImage(with: url)
     }
 }

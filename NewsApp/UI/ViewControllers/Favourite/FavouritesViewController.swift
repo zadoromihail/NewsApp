@@ -12,7 +12,6 @@ class FavouritesViewController: BaseViewController{
 
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var tableView: UITableView!
-
     var viewModel: FavouriteNewsViewModelProtocol!
     
     override func viewDidLoad() {
@@ -28,7 +27,6 @@ class FavouritesViewController: BaseViewController{
     private func setupUI() {
         title = "Favourite"
         view.backgroundColor = .white
-        
         activityIndicator.hidesWhenStopped = true
         tableView.delegate = self
         tableView.dataSource = self
@@ -97,7 +95,7 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        pushToDetailViewController(article: viewModel.articleForCellAt(indexPath: indexPath))
     }
 }
 

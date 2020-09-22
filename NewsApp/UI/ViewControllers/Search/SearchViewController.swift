@@ -13,7 +13,6 @@ class SearchViewController: BaseViewController {
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar!
-    
     var viewModel: SearchViewModelProtocol!
     private var refreshControl = UIRefreshControl()
     
@@ -62,7 +61,6 @@ class SearchViewController: BaseViewController {
             searchNews()
             return
         }
-        
         showAlert(message: "Internet is not connected")
         refreshControl.endRefreshing()
         scrollToTopIfNeeded()
@@ -74,19 +72,16 @@ class SearchViewController: BaseViewController {
         guard let query = searchBar.text, !query.isEmpty, CheckInternet.Connection() else {
             return
         }
-        
         viewModel.searchNews(text: query) { [weak self] isLoaded, newsCount in
             guard let self = self else { return }
             guard let newsCount = newsCount else {
                 self.showAlert(message: "Download error")
                 return
             }
-            
             guard isLoaded, newsCount > 0 else {
                 self.showAlert(message: "No news")
                 return
             }
-            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.scrollToTopIfNeeded()
@@ -98,13 +93,13 @@ class SearchViewController: BaseViewController {
         guard viewModel.numberOfRowsInSection > 0 else {
             return
         }
-        
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     @IBAction func tapGesture(_ sender: UITapGestureRecognizer) {
         searchBar.resignFirstResponder()
+        sender.cancelsTouchesInView = false
     }
 }
 
@@ -119,18 +114,16 @@ extension  SearchViewController: UITableViewDelegate, UITableViewDataSource {
             let article = viewModel.articleFor(index: indexPath.row) else {
             return UITableViewCell()
         }
-        
         cell.configureWith(article: article)
         cell.addToFavouritesAction = { [weak self] (strategy) in
             self?.showAlert(message: strategy.message)
             self?.viewModel.modifyStorage(article: article, strategy: strategy)
         }
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        pushToDetailViewController(article: viewModel.currentArticle(indexPath:indexPath))
     }
 }
 
@@ -142,7 +135,6 @@ extension SearchViewController: UISearchBarDelegate {
             showAlert(message: "Internet is not connected")
             return
         }
-        
         searchNews()
     }
     

@@ -9,13 +9,12 @@
 import Foundation
 
 protocol NewsViewModelProtocol {
-    
     var newsIsLoading: ((Bool) -> ())? { get set }
     var numberOfRowsInSection: Int { get }
     func articleFor(index: Int) -> Article?
+    func currentArticle(indexPath: IndexPath) -> Article
     func loadNews(completion: @escaping (Bool) -> ())
     func modifyStorage(article: Article, strategy: StorageStrategy)
-    func checkArticleInStorage(article:Article) -> Bool
 }
 
 class NewsViewModel: NewsViewModelProtocol {
@@ -25,15 +24,21 @@ class NewsViewModel: NewsViewModelProtocol {
         guard !news.isEmpty else {
             return 0
         }
-        
         return news.count
+    }
+    
+    func currentArticle(indexPath: IndexPath) -> Article {
+        let article = articleFor(index: indexPath.row)
+        guard let safeArticle = article  else {
+            return Article(source: nil, author: nil, title: nil, description: nil, url: nil, urlToImage: nil, publishedAt: nil, content: nil)
+        }
+        return safeArticle
     }
     
     func loadNews(completion: @escaping (Bool) -> ()) {
         newsIsLoading?(true)
         Networking.loadNews { [weak self] newspaper,isLoaded   in
             guard let self = self else { return }
-            
             guard let newspaper = newspaper else {
                 completion(false)
                 return}
@@ -56,17 +61,5 @@ class NewsViewModel: NewsViewModelProtocol {
         case .delete:
             try? storage.delete(object: article)
         }
-    }
-    
-    func checkArticleInStorage(article:Article) -> Bool  {
-           let storage = Storage()
-           let articles: [Article] = storage.cachedPlainObject()
-           
-           for someArticle in articles {
-               if article.title == someArticle.title {
-                return true
-               }
-           }
-        return false
     }
 }
